@@ -1,9 +1,9 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import { Image } from "react-native";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from "@/constants/Colors";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { Home, Users, Bell, PlusCircle } from "@/components/icons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -11,24 +11,53 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-      }}>
+        tabBarStyle: { backgroundColor: "#1a1a1a", borderTopColor: "#1a1a1a" },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: "",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, focused }) => <Home color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="users"
         options={{
-          title: 'Explore',
+          title: "",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, focused }) => <Users color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="post"
+        options={{
+          title: "",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, focused }) => <PlusCircle color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="notif"
+        options={{
+          title: "",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, focused }) => <Bell color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "",
+          tabBarShowLabel: false,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <Image
+              source={require("../../assets/images/pp-not-found.jpg")}
+              style={{ width: 24, height: 24, borderRadius: 24 }}
+            />
           ),
         }}
       />
